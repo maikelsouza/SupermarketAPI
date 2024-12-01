@@ -21,8 +21,4 @@ public class Basket {
         this.products.add(product);
     }
 
-    public Double getTotalCostNo(){
-        return this.products.stream().mapToDouble(Product::getPrice).sum();
-    }
-
 }

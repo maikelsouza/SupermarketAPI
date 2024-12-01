@@ -28,6 +28,4 @@ public class Promotion {
     @JsonProperty("type")
     private TypePromotion typePromotion;
 
-    //private String type;
-
 }

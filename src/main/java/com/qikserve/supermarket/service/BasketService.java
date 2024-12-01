@@ -2,7 +2,6 @@ package com.qikserve.supermarket.service;
 
 import com.qikserve.supermarket.model.Basket;
 import com.qikserve.supermarket.model.Product;
-import org.antlr.v4.runtime.misc.NotNull;
 
 public interface BasketService {
 
