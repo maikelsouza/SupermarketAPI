@@ -7,6 +7,8 @@ import com.qikserve.supermarket.model.Promotion;
 import com.qikserve.supermarket.service.BasketService;
 import com.qikserve.supermarket.util.CalculationUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,6 +17,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class BasketServiceImpl implements BasketService {
+
+    private static final Logger logger = LogManager.getLogger(BasketServiceImpl.class);
+
 
     private final BuyXGetYFreeServiceImpl buyXGetYFreeServiceImpl;
 
@@ -28,6 +33,7 @@ public class BasketServiceImpl implements BasketService {
     public Basket create() {
         var basket = Basket.builder().id(1L).build();
         this.baskets.add(basket);
+        logger.info("Basket created with ID: {}", basket.getId());
         return basket;
     }
 
@@ -37,27 +43,35 @@ public class BasketServiceImpl implements BasketService {
 
         if (basket.isPresent()) {
             basket.get().addProduct(product);
-            System.out.println("Produto adicionado ao Basket com ID 1.");
+            logger.info("Product {} add in Basket with ID {}", product.getId(), id);
         } else {
-            // Caso o Basket não seja encontrado
-            System.out.println("Basket com ID 1 não encontrado.");
+            logger.warn("Basket with ID {} not found.", id);
         }
 
         return basket.get();
     }
 
     public Double calculateTotalPromotion(Long id){
-        return CalculationUtil.roundToTwoDecimalPlaces(calculateTotalCostNoApplyPromotion(id) - calculateTotalCostApplyingPromotion(id));
+        double totalPromotion = CalculationUtil.roundToTwoDecimalPlaces(calculateTotalCostNoApplyPromotion(id) - calculateTotalCostApplyingPromotion(id));
+        logger.debug("Total promotion calculated: {}", totalPromotion);
+        return totalPromotion;
     }
 
     public Double calculateTotalCostNoApplyPromotion(Long id){
         Optional<Basket> basket = findBasketById(baskets, id);
-        return CalculationUtil.roundToTwoDecimalPlaces(basket.get().getProducts().stream().mapToDouble(Product::getPrice).sum());
+        double totalCost = basket.map(b -> b.getProducts().stream().mapToDouble(Product::getPrice).sum()).orElse(0.0);
+        logger.debug("Total without applying promotion for Basket ID {}: {}", id, totalCost);
+        return CalculationUtil.roundToTwoDecimalPlaces(totalCost);
     }
 
     public Double calculateTotalCostApplyingPromotion(Long id){
 
         Optional<Basket> basket = findBasketById(baskets, id);
+
+        if (basket.isEmpty()) {
+            logger.warn("Basket with ID {} not found when calculating total cost with promotion.", id);
+            return 0.0;
+        }
         var products = basket.get().getProducts();
         double totalCost = 0.0;
 
@@ -77,6 +91,8 @@ public class BasketServiceImpl implements BasketService {
             var promotions = product.getPromotions();
             if (promotions.isEmpty()){
                 totalCost += product.getPrice() * quantity;
+                logger.debug("No promotions for product {}. Total cost updated: {}", product.getId(), totalCost);
+
             }else{
                 Promotion promotion = promotions.get(0);
                 if (promotion.getTypePromotion() == TypePromotion.FLAT_PERCENT){
@@ -88,6 +104,7 @@ public class BasketServiceImpl implements BasketService {
                 if (promotion.getTypePromotion() == TypePromotion.QTY_BASED_PRICE_OVERRIDE){
                     totalCost += qtyBasedPriceOverrideServiceImpl.applyDiscount(product,promotion, quantity);
                 }
+                logger.debug("Total cost of promotions for the product {}: {}", product.getId(), totalCost);
             }
         }
         return CalculationUtil.roundToTwoDecimalPlaces(totalCost);
