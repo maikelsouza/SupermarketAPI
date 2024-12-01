@@ -13,17 +13,17 @@ public class ProductService {
     @Value("${api.url}")
     private String apiUrl;
 
-    //private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-//    public ProductService(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
-//
-//    public List<Map<String, Object>> fetchProducts() {
-//        return restTemplate.getForObject(apiUrl + "/products", List.class);
-//    }
-//
-//    public List<Map<String, Object>> fetchProductById(String id) {
-//        return restTemplate.getForObject(apiUrl + "/products/"+id, List.class);
-//    }
+    public ProductService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public List<Map<String, Object>> fetchProducts() {
+        return restTemplate.getForObject(apiUrl + "/products", List.class);
+    }
+
+    public List<Map<String, Object>> fetchProductById(String id) {
+        return restTemplate.getForObject(apiUrl + "/products/"+id, List.class);
+    }
 }
