@@ -32,6 +32,22 @@ public class BasketController {
         return new ResponseEntity<>(updatedBasket, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/totalCostApplyingPromotion/{id}")
+    public ResponseEntity<Double> calculateTotalCostApplyingPromotion(@PathVariable("id") Long id) {
+        final Double updatedBasket = basketService.calculateTotalCostApplyingPromotion(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "some-uri");
+        return new ResponseEntity<>(updatedBasket, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/totalPromotion/{id}")
+    public ResponseEntity<Double> calculateTotalPromotion(@PathVariable("id") Long id) {
+        final Double updatedBasket = basketService.calculateTotalPromotion(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "some-uri");
+        return new ResponseEntity<>(updatedBasket, headers, HttpStatus.OK);
+    }
+
     private HttpHeaders loadUri(Basket basket) {
         final String uri = ServletUriComponentsBuilder
                 .fromCurrentServletMapping()

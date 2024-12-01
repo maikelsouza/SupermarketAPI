@@ -8,11 +8,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class QtyBasedPriceOverrideServiceImpl implements PromotionService {
 
+
     @Override
     public double applyDiscount(Product product, Promotion promotion, int quantity) {
         Integer requiredQty = promotion.getRequiredQty();
+
         if (quantity >= requiredQty) {
-            return quantity * promotion.getPrice();
+            int fullLots = quantity / requiredQty;
+            int remainder = quantity % requiredQty;
+            double discountedPrice = fullLots * promotion.getPrice();
+            double regularPrice = remainder * product.getPrice();
+            return discountedPrice + regularPrice;
         }
         return product.getPrice() * quantity;
     }

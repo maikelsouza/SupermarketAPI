@@ -10,7 +10,7 @@ public class FlatPercentServiceImpl implements PromotionService {
     @Override
     public double applyDiscount(Product product, Promotion promotion, int quantity) {
 
-        double priceWithDiscount = product.getPrice() * (1 - promotion.getAmount() / 100);
+        double priceWithDiscount = product.getPrice() * (1 - (double) promotion.getAmount() / 100);
         return quantity * priceWithDiscount;
 
     }

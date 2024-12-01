@@ -10,4 +10,8 @@ public interface BasketService {
     Basket create();
 
     Basket addItem(Product product, Long id);
+
+    Double calculateTotalCostApplyingPromotion(Long id);
+
+    Double calculateTotalPromotion(Long id);
 }

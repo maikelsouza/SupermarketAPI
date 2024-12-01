@@ -17,6 +17,6 @@ public class Product {
 
     private Double price;
 
-    private Promotion promotion;
+    private List<Promotion> promotions;
 
 }

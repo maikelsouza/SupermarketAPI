@@ -3,8 +3,10 @@ package com.qikserve.supermarket.service.impl;
 import com.qikserve.supermarket.model.Product;
 import com.qikserve.supermarket.model.Promotion;
 import com.qikserve.supermarket.service.PromotionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class BuyXGetYFreeServiceImpl implements PromotionService {
 
