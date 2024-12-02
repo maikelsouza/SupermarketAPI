@@ -33,6 +33,6 @@ Develop a supermarket checkout system, where:
   <li>Each item may or may not have a promotion. If so, it should be applied. <strong>Done</strong></li>  
   <li>The system should display the amount the customer saved. <strong>Done</strong></li>
   <li>New prices and promotions could be inserted. <strong>Done</strong>, but with a caveat. If there is another type of promotion, the system will not calculate it.</li>
-  <li>Prices should be indicated in cents. <strong>Done</strong><li>
+  <li>Prices should be indicated in cents. <strong>Done</strong></li>
 </ul>
 
