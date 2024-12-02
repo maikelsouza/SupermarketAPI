@@ -1,0 +1,28 @@
+[
+  {
+    "id": "PWWe3w1SDU",
+    "name": "Amazing Burger!",
+    "price": 999,
+    "promotions": [
+      {
+        "id": "ZRAwbsO2qM",
+        "type": "BUY_X_GET_Y_FREE",
+        "required_qty": 2,
+        "free_qty": 1
+      }
+    ]
+  },
+  {
+    "id": "PWWe3w1SDU",
+    "name": "Amazing Burger!",
+    "price": 999,
+    "promotions": [
+      {
+        "id": "ZRAwbsO2qM",
+        "type": "BUY_X_GET_Y_FREE",
+        "required_qty": 2,
+        "free_qty": 1
+      }
+    ]
+  }
+]
