@@ -15,15 +15,24 @@
 # Follow-up questions
 ### 1. How long did you spend on the test? What would you add if you had more time?
 I have spend around 15 hours.
+I would add continuous integration testing, performance testing and after a conversation with sales, I would start modeling the database for a BI solution.
 
 ### 2. What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
 **** I'd clean up the controller moving all private methods to service, I'd add more unit tests and I'd add a CI/CD pipeline in github.
 
 ### 3. What did you find most difficult?
-*** I'd send the price in pound instead of pennies, add a Dockerfile to make create a docker-compose file easy with all apps.
+WireMockServer Configuration.
 
 ### 4. What mechanism did you put in place to track down issues in production on this code? If you didn’t put anything, write down what you could do.
-*** I've found difficult in make the code more clean.
+I configured Log4j and put some logs in the application
 
 ### 5. Explain your interpretation of the list of requirements and what was delivered or not delivered and why
-*** In general was a very rich experience. To implement that, I've need to remember a lot of concepts. I believe that with that implementation, you can know a lot about how I code.
+Develop a supermarket checkout system, where:
+<ul>
+  <li>The customer could add items, in any order. <strong>Done</strong></li>
+  <li>Each item may or may not have a promotion. If so, it should be applied. <strong>Done</strong></li>  
+  <li>The system should display the amount the customer saved. <strong>Done</strong></li>
+  <li>New prices and promotions could be inserted. <strong>Done</strong>, but with a caveat. If there is another type of promotion, the system will not calculate it.</li>
+  <li>Prices should be indicated in cents. <strong>Done</strong><li>
+</ul>
+
