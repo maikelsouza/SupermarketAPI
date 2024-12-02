@@ -14,7 +14,7 @@ public class SupermarketApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(SupermarketApplication.class, args);
-		logger.info("Spring Boot application started with Log4j2!");
+		logger.info("Spring Boot application started with Log4j!");
 	}
 
 }
