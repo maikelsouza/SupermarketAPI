@@ -12,9 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -22,7 +19,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -162,21 +158,6 @@ class BasketServiceImplTest {
         return product;
     }
 
-//    private void buildTwoProductionWithPromotionQtyBasedPriceOverride(){
-//        basketService.addItem(buildPizzaProduct(), 1L);
-//        basketService.addItem(buildPizzaProduct(), 1L);
-//    }
-
-//    private void buildTwoProductionWithPromotionFlatPercent(){
-//        basketService.addItem(buildSaladProduct(), 1L);
-//        basketService.addItem(buildSaladProduct(), 1L);
-//    }
-
-//    private void buildTwoProductionWithPromotionBuyXGetYFree(){
-//        basketService.addItem(buildBurgerProduct(), 1L);
-//        basketService.addItem(buildBurgerProduct(), 1L);
-//    }
-
     private Product buildTwoProductionWithPromotionFlatPercent(List<Map<String, Object>> productMaps){
         Product product = null;
         for (Map<String, Object> productMap : productMaps) {
@@ -210,6 +191,10 @@ class BasketServiceImplTest {
             }
         }
 
+        return buildProduct(productMap, promotions);
+    }
+
+    private static Product buildProduct(Map<String, Object> productMap, List<Promotion> promotions) {
         return Product.builder()
                 .id((String) productMap.get("id"))
                 .name((String) productMap.get("name"))
@@ -233,12 +218,7 @@ class BasketServiceImplTest {
             }
         }
 
-        return Product.builder()
-                .id((String) productMap.get("id"))
-                .name((String) productMap.get("name"))
-                .price(((Number) productMap.get("price")).doubleValue())
-                .promotions(promotions)
-                .build();
+        return buildProduct(productMap, promotions);
     }
 
     private static Product mapToSaladProduct(Map<String, Object> productMap) {
@@ -255,91 +235,13 @@ class BasketServiceImplTest {
             }
         }
 
-        return Product.builder()
-                .id((String) productMap.get("id"))
-                .name((String) productMap.get("name"))
-                .price(((Number) productMap.get("price")).doubleValue())
-                .promotions(promotions)
-                .build();
+        return buildProduct(productMap, promotions);
     }
 
     private void buildTwoProductionNoPromotion(List<Map<String, Object>> productMaps){
         for (Map<String, Object> productMap : productMaps) {
-            Product product = Product.builder()
-                    .id((String) productMap.get("id"))
-                    .name((String) productMap.get("name"))
-                    .price(((Number) productMap.get("price")).doubleValue())
-                    .promotions((List<Promotion>) productMap.get("promotions"))
-                    .build();
+            Product product = buildProduct(productMap, (List<Promotion>) productMap.get("promotions"));
             basketService.addItem(product,1L);
         }
-    }
-
-//    private void buildTwoProductionNoPromotion(){
-//        basketService.addItem(buildBoringFriesProduct(), 1L);
-//        basketService.addItem(buildBoringFriesProduct(), 1L);
-//    }
-
-    private Product buildBoringFriesProduct() {
-        return Product.builder()
-                .id("4MB7UfpTQs")
-                .name("Boring Fries!")
-                .price(199.00)
-                .promotions(new ArrayList<>())
-                .build();
-    }
-
-    private Product buildPizzaProduct() {
-        return Product.builder()
-                .id("Dwt5F7KAhi")
-                .name("Amazing Pizza!")
-                .price(1099.00)
-                .promotions(Arrays.asList(buildPromotionQtyBasedPriceOverride()))
-                .build();
-    }
-
-
-    private Product buildSaladProduct() {
-        return Product.builder()
-                .id("C8GDyLrHJb")
-                .name("Amazing Salad!")
-                .price(499.00)
-                .promotions(Arrays.asList(buildPromotionFlatPercent()))
-                .build();
-    }
-
-    private Product buildBurgerProduct() {
-        return Product.builder()
-                .id("PWWe3w1SDU")
-                .name("Amazing Burger!")
-                .price(999.00)
-                .promotions(Arrays.asList(buildPromotionBuyXGetYFree()))
-                .build();
-    }
-
-    private Promotion buildPromotionBuyXGetYFree(){
-        return Promotion.builder()
-                .id("ZRAwbsO2qM")
-                .requiredQty(2)
-                .freeQty(1)
-                .typePromotion(TypePromotion.BUY_X_GET_Y_FREE)
-                .build();
-    }
-
-    private Promotion buildPromotionFlatPercent(){
-        return Promotion.builder()
-                .id("Gm1piPn7Fg")
-                .amount(10)
-                .typePromotion(TypePromotion.FLAT_PERCENT)
-                .build();
-    }
-
-    private Promotion buildPromotionQtyBasedPriceOverride(){
-        return Promotion.builder()
-                .id("ibt3EEYczW")
-                .requiredQty(2)
-                .price(1799.00)
-                .typePromotion(TypePromotion.QTY_BASED_PRICE_OVERRIDE)
-                .build();
     }
 }
