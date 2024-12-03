@@ -20,7 +20,7 @@ import static com.qikserve.supermarket.controller.BasketController.getHttpHeader
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/products")
+@RequestMapping(value = "/api/products")
 public class ProductController {
 
     private static final Logger logger = LogManager.getLogger(ProductController.class);

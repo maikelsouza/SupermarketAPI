@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/baskets")
+@RequestMapping(value = "/api/baskets")
 public class BasketController {
 
 
