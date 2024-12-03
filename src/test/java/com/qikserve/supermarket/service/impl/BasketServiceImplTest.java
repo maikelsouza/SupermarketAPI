@@ -50,9 +50,9 @@ class BasketServiceImplTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         basketService.create();
-        wireMockServer = new WireMockServer(8081);
+        wireMockServer = new WireMockServer(8082);
         wireMockServer.start();
-        configureFor("localhost", 8081);
+        configureFor("localhost", 8082);
         RestTemplate restTemplate = new RestTemplate();
         productServiceTestClientClient = new ProductServiceTestClient(restTemplate);
     }

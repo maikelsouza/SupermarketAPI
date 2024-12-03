@@ -16,10 +16,10 @@ public class ProductServiceTestClient {
     }
 
     public List<Map<String, Object>> fetchProducts() {
-        return restTemplate.getForObject( "http://localhost:8081/products", List.class);
+        return restTemplate.getForObject( "http://localhost:8082/products", List.class);
     }
 
     public List<Map<String, Object>> fetchProductById(String id) {
-        return restTemplate.getForObject("http://localhost:8081/products/"+id, List.class);
+        return restTemplate.getForObject("http://localhost:8082/products/"+id, List.class);
     }
 }
