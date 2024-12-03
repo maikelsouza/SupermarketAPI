@@ -2,7 +2,7 @@ package com.qikserve.supermarket.service.impl;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 
-import com.qikserve.supermarket.client.ProductService;
+import com.qikserve.supermarket.client.ProductServiceTestClient;
 import com.qikserve.supermarket.enuns.TypePromotion;
 import com.qikserve.supermarket.model.Product;
 import com.qikserve.supermarket.model.Promotion;
@@ -44,7 +44,7 @@ class BasketServiceImplTest {
     private WireMockServer wireMockServer;
 
     @InjectMocks
-    private ProductService productService;
+    private ProductServiceTestClient productServiceTestClientClient;
 
     @BeforeEach
     void setUp() {
@@ -54,7 +54,7 @@ class BasketServiceImplTest {
         wireMockServer.start();
         configureFor("localhost", 8081);
         RestTemplate restTemplate = new RestTemplate();
-        productService = new ProductService(restTemplate);
+        productServiceTestClientClient = new ProductServiceTestClient(restTemplate);
     }
 
     @AfterEach
@@ -74,7 +74,7 @@ class BasketServiceImplTest {
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBody(mockResponse)));
-        List<Map<String, Object>> twoBoringFriesProduct = this.productService.fetchProductById("4MB7UfpTQs");
+        List<Map<String, Object>> twoBoringFriesProduct = this.productServiceTestClientClient.fetchProductById("4MB7UfpTQs");
 
         this.buildTwoProductionNoPromotion(twoBoringFriesProduct);
 
@@ -94,7 +94,7 @@ class BasketServiceImplTest {
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBody(mockResponse)));
-        List<Map<String, Object>> twoBurgerProduct = this.productService.fetchProductById("PWWe3w1SDU");
+        List<Map<String, Object>> twoBurgerProduct = this.productServiceTestClientClient.fetchProductById("PWWe3w1SDU");
 
         var product = this.buildTwoProductionWithPromotionBuyXGetYFree(twoBurgerProduct);
 
@@ -116,7 +116,7 @@ class BasketServiceImplTest {
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBody(mockResponse)));
-        List<Map<String, Object>> twoSaladProduct = this.productService.fetchProductById("C8GDyLrHJb");
+        List<Map<String, Object>> twoSaladProduct = this.productServiceTestClientClient.fetchProductById("C8GDyLrHJb");
 
         var product = this.buildTwoProductionWithPromotionFlatPercent(twoSaladProduct);
 
@@ -139,7 +139,7 @@ class BasketServiceImplTest {
                         .withHeader("Content-Type", "application/json")
                         .withBody(mockResponse)));
 
-        List<Map<String, Object>> twoPizzaProduct = this.productService.fetchProductById("Dwt5F7KAhi");
+        List<Map<String, Object>> twoPizzaProduct = this.productServiceTestClientClient.fetchProductById("Dwt5F7KAhi");
         var product = this.buildTwoProductionWithPromotionQtyBasedPriceOverride(twoPizzaProduct);
 
         when(qtyBasedPriceOverrideServiceImpl.applyDiscount(eq(product), any(), eq(2)))
