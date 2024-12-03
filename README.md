@@ -13,10 +13,10 @@
 
 ## Endpoints
 
-```/baskets/create``` - **POST** - Create a new basket\
-```/baskets/add/{id}``` - **PATCH** - Add an item into an already existing basket\
-```/baskets/totalCostApplyingPromotion/{id}``` - **GET** - Return total cost applying promotions\
-```/baskets/totalPromotion/{id}``` - **GET** - Returns the sum of promotions\
+```/api/baskets/create``` - **POST** - Create a new basket\
+```/api/baskets/add/{id}``` - **PATCH** - Add an item into an already existing basket\
+```/api/baskets/totalCostApplyingPromotion/{id}``` - **GET** - Return total cost applying promotions\
+```/api/baskets/totalPromotion/{id}``` - **GET** - Returns the sum of promotions\
 
 
 # Follow-up questions
