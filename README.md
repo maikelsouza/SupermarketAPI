@@ -26,8 +26,8 @@
 
 # Follow-up questions
 ### 1. How long did you spend on the test? What would you add if you had more time?
-I have spend around 15 hours.
-I would add continuous integration testing, performance testing and after a conversation with sales, I would start modeling the database for a BI solution.
+I have spent around 15 hours.
+I would add continuous integration testing and performance testing. After a conversation with sales, I would start modeling the database for a BI solution.
 
 ### 2. What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
 **** I'd clean up the controller moving all private methods to service, I'd add more unit tests and I'd add a CI/CD pipeline in github.
@@ -44,6 +44,7 @@ Develop a supermarket checkout system, where:
   <li>The customer could add items, in any order. <strong>Done</strong></li>
   <li>Each item may or may not have a promotion. If so, it should be applied. <strong>Done</strong></li>  
   <li>The system should display the amount the customer saved. <strong>Done</strong></li>
+  <li>Integrate with WireMockServer. For unit testing and to query the products as well as the details of each one of them. <strong>Done</strong></li>
   <li>New prices and promotions could be inserted. <strong>Done</strong>, but with a caveat. If there is another type of promotion, the system will not calculate it.</li>
   <li>Prices should be indicated in cents. <strong>Done</strong></li>
 </ul>
