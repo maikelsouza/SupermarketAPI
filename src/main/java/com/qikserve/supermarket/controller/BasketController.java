@@ -77,7 +77,7 @@ public class BasketController {
         }
     }
 
-    private static HttpHeaders getHttpHeaders() {
+    static HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "some-uri");
         return headers;
