@@ -30,8 +30,33 @@ I have spent around 15 hours.
 I would add continuous integration testing and performance testing. After a conversation with sales, I would start modeling the database for a BI solution.
 
 ### 2. What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
-**** I'd clean up the controller moving all private methods to service, I'd add more unit tests and I'd add a CI/CD pipeline in github.
+I used the SOLID resource - OCP — Open-Closed Principle. It was very helpful to see which promotion I should apply for.
 
+```java
+ 
+// The interface represents the common behavior that will be implemented by the different promotion classes. 
+public interface PromotionService {    
+    double applyDiscount(Product product, Promotion promotion, int quantity);
+}
+
+// The concrete classes represent the different types of promotions
+@Service
+public class QtyBasedPriceOverrideServiceImpl implements PromotionService {
+    @Override
+    public double applyDiscount(Product product, Promotion promotion, int quantity) {
+        Integer requiredQty = promotion.getRequiredQty();
+
+        if (quantity >= requiredQty) {
+            int fullLots = quantity / requiredQty;
+            int remainder = quantity % requiredQty;
+            double discountedPrice = fullLots * promotion.getPrice();
+            double regularPrice = remainder * product.getPrice();
+            return discountedPrice + regularPrice;
+        }
+        return product.getPrice() * quantity;
+    }
+}
+```
 ### 3. What did you find most difficult?
 WireMockServer Configuration.
 
