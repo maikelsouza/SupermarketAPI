@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "4e0ccad8-a9bd-4ff4-b7e3-addaa8596eed",
+		"name": "Supermarket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20322573",
+		"_collection_link": "https://lunar-meadow-692780.postman.co/workspace/QikServe~0cce2154-92b8-48b5-80e6-fb201253c650/collection/20322573-4e0ccad8-a9bd-4ff4-b7e3-addaa8596eed?action=share&source=collection_link&creator=20322573"
+	},
+	"item": [
+		{
+			"name": "Wiremock",
+			"item": [
+				{
+					"name": "List Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Detail Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products/PWWe3w1SDU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"PWWe3w1SDU"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supermarket API",
+			"item": [
+				{
+					"name": "Calculate Total Cost Applying Promotion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/totalCostApplyingPromotion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"totalCostApplyingPromotion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calculate Total Promotion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/totalPromotion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"totalPromotion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Detail Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/PWWe3w1SDU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"PWWe3w1SDU"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product Pizza",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"Dwt5F7KAhi\",\r\n    \"name\": \"Amazing Pizza!\",\r\n    \"price\": 1099,\r\n    \"promotions\": [\r\n        {\r\n            \"id\": \"ibt3EEYczW\",\r\n            \"type\": \"QTY_BASED_PRICE_OVERRIDE\",\r\n            \"required_qty\": 2,\r\n            \"price\": 1799\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/baskets/add/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"baskets",
+								"add",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product Burger",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"PWWe3w1SDU\",\r\n    \"name\": \"Amazing Burger!\",\r\n    \"price\": 999,\r\n    \"promotions\": [\r\n        {\r\n            \"id\": \"ZRAwbsO2qM\",\r\n            \"type\": \"BUY_X_GET_Y_FREE\",\r\n            \"required_qty\": 2,\r\n            \"free_qty\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/add/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"add",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product Salad",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"C8GDyLrHJb\",\r\n    \"name\": \"Amazing Salad!\",\r\n    \"price\": 499,\r\n    \"promotions\": [\r\n        {\r\n            \"id\": \"Gm1piPn7Fg\",\r\n            \"type\": \"FLAT_PERCENT\",\r\n            \"amount\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/add/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"add",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product Boring Fries",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"4MB7UfpTQs\",\r\n    \"name\": \"Boring Fries!\",\r\n    \"price\": 199,\r\n    \"promotions\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/baskets/add/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"baskets",
+								"add",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
