@@ -23,6 +23,77 @@
 ```/api/products``` - **GET** - Return all products\
 ```/api/products/{id}``` - **GET** - Return a product by id
 
+## Step by step to run the API
+
+<ul>
+  <li>Run the class SupermarketApplication</li>
+  <li>Call the endpoint - http://localhost:8080/api/baskets/create -  POST </li>
+  <li>Call the endoint below as many times as you want, whether or not you modify the endpoint body</li>
+  <li>Call the endpoint - http://localhost:8080/baskets/add/1 -  PACTH </li>
+  <li>Call the endpoint to calculate the total cost of promotions -  http://localhost:8080/api/baskets/totalCostApplyingPromotion/1 -  GET </li>
+  <li>Call the endpoint to calculate the sun of promotions -  http://localhost:8080/api/baskets/totalPromotion/1 -  GET </li>
+</ul>
+
+### Json referring to products added to the basket 
+
+#### Pizza!
+```json
+{
+    "id": "Dwt5F7KAhi",
+    "name": "Amazing Pizza!",
+    "price": 1099,
+    "promotions": [
+       {
+          "id": "ibt3EEYczW",
+          "type": "QTY_BASED_PRICE_OVERRIDE",
+          "required_qty": 2,
+          "price": 1799
+      }
+    ]
+}
+```
+#### Burger!
+```json
+{
+  "id": "PWWe3w1SDU",
+  "name": "Amazing Burger!",
+  "price": 999,
+  "promotions": [
+    {
+      "id": "ZRAwbsO2qM",
+      "type": "BUY_X_GET_Y_FREE",
+      "required_qty": 2,
+      "free_qty": 1
+    }
+  ]
+}
+```
+
+#### Salad!
+```json
+{
+  "id": "C8GDyLrHJb",
+  "name": "Amazing Salad!",
+  "price": 499,
+  "promotions": [
+    {
+      "id": "Gm1piPn7Fg",
+      "type": "FLAT_PERCENT",
+      "amount": 10
+    }
+  ]
+}
+```
+
+#### Boring Fries!
+```json
+{
+  "id": "4MB7UfpTQs",
+  "name": "Boring Fries!",
+  "price": 199,
+  "promotions": []
+}
+```
 
 # Follow-up questions
 ### 1. How long did you spend on the test? What would you add if you had more time?
