@@ -95,6 +95,10 @@
 }
 ```
 
+# Resources
+### 1) Inside the directory src\main\resources\postman\collections you find the endpoints made in postman that help.
+### 2) Inside the directory src\main\resources\mockApi you will find a mock-api.zip file that you should unzip and read the README. This way, you will be able to call the endpoints that return a list of products or the details of a product.
+
 # Follow-up questions
 ### 1. How long did you spend on the test? What would you add if you had more time?
 I have spent around 15 hours.
