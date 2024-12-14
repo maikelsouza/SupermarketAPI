@@ -8,7 +8,7 @@
   <li>Log4j - 2.20.0</li>
   <li>Lombok</li>
   <li>Wiremock</li>
-  <li>Running in port 8080</li> 
+  <li>Running in port 8080</li>
 </ul>
 
 ## Endpoints
